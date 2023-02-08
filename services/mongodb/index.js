@@ -2,9 +2,9 @@ import ToDo from "@/services/mongodb/models/ToDo";
 
 import dbConnect from "./dbConnect";
 
-export async function getToDos() {
+export async function getToDos(userId) {
   await dbConnect();
-  return await ToDo.find();
+  return await ToDo.find({ userId });
 }
 
 export async function addToDo(body) {

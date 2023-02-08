@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const ToDoSchema = new mongoose.Schema({
+  userId: String,
   content: String,
 });
 
