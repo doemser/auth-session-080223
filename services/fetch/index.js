@@ -1,6 +1,6 @@
 export async function fetchToDo(method, successCallback, body) {
   try {
-    const response = await fetch(url, {
+    const response = await fetch("/api/to-dos", {
       method,
       body: JSON.stringify(body),
       headers: {
