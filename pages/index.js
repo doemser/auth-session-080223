@@ -2,8 +2,7 @@ import useSWR from "swr";
 import { fetchToDo } from "@/services/fetch";
 
 export default function Home() {
-  const url = "/api/to-dos";
-  const { data: todos } = useSWR(url);
+  const { data: todos, mutate } = useSWR("/api/to-dos");
 
   return (
     <div style={{ fontSize: "x-large" }}>
@@ -14,7 +13,7 @@ export default function Home() {
           const formData = new FormData(event.target);
           const { todoInput } = Object.fromEntries(formData);
 
-          fetchToDo("POST", url, { content: todoInput });
+          fetchToDo("POST", mutate, { content: todoInput });
 
           event.target.reset();
         }}
@@ -32,7 +31,7 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => {
-                  fetchToDo("DELETE", url, { id: todo._id });
+                  fetchToDo("DELETE", mutate, { id: todo._id });
                 }}
               >
                 delete
